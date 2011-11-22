@@ -29,7 +29,7 @@ public class Main {
 		
 		Klient klient2 = null;
 		try {
-			klient2 = new Klient("Adam Nowak", 1000);
+			klient2 = new Klient("Jan Kowalski", 1000);
 		} catch (NiepoprawnaIloscPieniedzy e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,13 +37,13 @@ public class Main {
 
 		klient2.pokazMojeAuta();
 		
-		Auto Fiesta = autoKomis.znajdzAutoPoModelu("Fiesta");
-		Auto Punto = autoKomis.znajdzAutoPoModelu("Punto");
-		Auto Galaxy = autoKomis.znajdzAutoPoModelu("Galaxy");
+		Auto fiestaAuto = autoKomis.znajdzAutoPoMarce("Fiesta");
+		Auto puntoAuto = autoKomis.znajdzAutoPoMarce("Punto");
+		Auto galaxyAuto = autoKomis.znajdzAutoPoMarce("Galaxy");
 		try{	
-			autoKomis.kupAuto(klient2 , Punto);
-			autoKomis.kupAuto(klient2 , Fiesta);
-			autoKomis.kupAuto(klient2 , Galaxy);
+			autoKomis.kupAuto(klient2 , fiestaAuto);
+			autoKomis.kupAuto(klient2 , puntoAuto);
+			autoKomis.kupAuto(klient2 , galaxyAuto);
 		} catch (BrakPieniedzyWyjatek e) {
 			logger.error(e.getMessage());
 		}

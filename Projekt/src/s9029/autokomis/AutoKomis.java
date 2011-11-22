@@ -20,17 +20,17 @@ public class AutoKomis {
 
 	public void usunAutoZKomisu(Auto auto) {
 		autoList.remove(auto);
-		logger.debug("Usunieto samochod z komisu: " + auto.getTitle());
+		logger.debug("Usunieto samochod z komisu: " + auto.pobierzMarke());
 	}
 	
-	public void ustalNowaCene(String movieTitle, float newPrice){
-		Auto auto = znajdzAutoPoModelu(movieTitle);
+	public void ustalNowaCene(String markaAuta, float newPrice){
+		Auto auto = znajdzAutoPoMarce(markaAuta);
 		auto.setPrice(newPrice);
 	}
 
 	public void dodajAuto(Auto auto) {
 		autoList.add(auto);
-		logger.debug("Dodano nowy samochód do komisu: " + auto.getTitle());
+		logger.debug("Dodano nowy samochód do komisu: " + auto.pobierzMarke());
 	}
 
 	public void pokazWszystkieAuta() {
@@ -40,7 +40,7 @@ public class AutoKomis {
 		}
 	}
 
-	public List<Auto> znajdzAutoPoModelu2(String director) {
+	public List<Auto> znajdzAutoPoModelu(String director) {
 		List<Auto> resultList = new ArrayList<Auto>();
 		for (Auto auto : autoList) {
 			if (auto.pobierzModel().equals(director))
@@ -58,9 +58,9 @@ public class AutoKomis {
 		return resultList;
 	}
 
-	public Auto znajdzAutoPoModelu(String title) {
+	public Auto znajdzAutoPoMarce(String title) {
 		for (Auto auto : autoList) {
-			if (auto.getTitle().equals(title)) {
+			if (auto.pobierzMarke().equals(title)) {
 				return auto;
 			}
 		}
@@ -76,7 +76,7 @@ public class AutoKomis {
 			Fiesta.setAvailable(false);
 			klient.pokazAuto(Fiesta);
 			logger.debug("Klient " + klient.getName()
-					+ " wlasnie wykupil samochod " + Fiesta.getTitle());
+					+ " wlasnie wykupil samochod " + Fiesta.pobierzMarke());
 		}
 	}
 }

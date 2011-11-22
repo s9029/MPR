@@ -45,7 +45,7 @@ public class AutoKomisTest {
 	
 	@Test
 	public void usunAutoZKomisuTest(){
-		Auto passat = autoKomis.znajdzAutoPoModelu("Passat");
+		Auto passat = autoKomis.znajdzAutoPoMarce("Passat");
 		autoKomis.pokazWszystkieAuta();
 		autoKomis.usunAutoZKomisu(passat);
 		autoKomis.pokazWszystkieAuta();
@@ -60,14 +60,14 @@ public class AutoKomisTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		Auto Fabia = autoKomis.znajdzAutoPoModelu("Fabia");
+		Auto Fabia = autoKomis.znajdzAutoPoMarce("Fabia");
 		
 		try {
 			autoKomis.kupAuto(klient, Fabia);
 			System.out.println("Sprawdzanie czy kupione auto ma FLAGE AVAILABLE=FALSE");
 			boolean available = Fabia.isAvailable();
 			Assert.assertFalse("BLAD! auto mimo wykupu ma flage dostepnosci = true", available);
-			System.out.println("Udalo sie kupic auto " + Fabia.getTitle());
+			System.out.println("Udalo sie kupic auto " + Fabia.pobierzMarke());
 		} catch (BrakPieniedzyWyjatek e) {
 			e.printStackTrace();
 			Assert.fail("Wystapil wyjatek w czasie proby kupienia auta: " + e.getMessage());
@@ -78,7 +78,7 @@ public class AutoKomisTest {
 	public void settingPriceTest(){
 		float newPrice = 555;
 		autoKomis.ustalNowaCene("Dr House", newPrice);
-		Auto auto = autoKomis.znajdzAutoPoModelu("Fabia");
+		Auto auto = autoKomis.znajdzAutoPoMarce("Fabia");
 		Assert.assertEquals("BLAD, Nie udalo sie ustawic nowej ceny dla filmu ", auto.getPrice() ,newPrice);
 		
 	}
@@ -87,7 +87,7 @@ public class AutoKomisTest {
 	@Test
 	public void znajdzPoModeluTest(){
 		System.out.println("Wyszukiwanie po modelu...");
-		List<Auto> resultList = autoKomis.znajdzAutoPoModelu2("Jan Nowak");
+		List<Auto> resultList = autoKomis.znajdzAutoPoModelu("Jan Nowak");
 		Assert.assertNotNull("Blad, lista zwrocona z metody wyszukujacej po modelu zwrocila NULL",resultList);
 		Assert.assertTrue("Blad, lista zwrocona z metody wyszukujacej po modelu jest pusta",resultList.size()>0);
 		if(resultList.size()>0){
@@ -112,7 +112,7 @@ public class AutoKomisTest {
 	
 	@Test
 	public void znajdzPoMarce(){
-		Auto smerfy = autoKomis.znajdzAutoPoModelu("BMW");		
+		Auto smerfy = autoKomis.znajdzAutoPoMarce("BMW");		
 		Assert.assertNotNull("Blad, nie znaleziono auta BMW szukajac po marce",smerfy);		
 		if(smerfy!=null)
 			System.out.println("Znaleziono auto BMW wyszujujac po marce");
@@ -128,7 +128,7 @@ public class AutoKomisTest {
 	public void clientHasNoMoneyToPayTest() throws NiepoprawnaIloscPieniedzy, BrakPieniedzyWyjatek{
 		System.out.println("Test wyjatku NoMoneyException ");
 		Klient klient1 = new Klient("Adam Nowak", 1);
-		Auto passat = autoKomis.znajdzAutoPoModelu("Passat");
+		Auto passat = autoKomis.znajdzAutoPoMarce("Passat");
 		Assert.assertNotNull("nie znaleziono auta BMW", passat);
 		System.out.println("Znaleziono samochod Passat");
 		autoKomis.kupAuto(klient1, passat);

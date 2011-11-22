@@ -17,7 +17,7 @@ public class Auto {
 		this.cena = price;
 	}
 
-	public String getTitle() {
+	public String pobierzMarke() {
 		return marka;
 	}
 

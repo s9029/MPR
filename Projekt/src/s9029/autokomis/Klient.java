@@ -40,7 +40,7 @@ public class Klient {
 
 	public Auto returnAuto(String title) {
 		for (Auto auto : MojeAuta) {
-			if (auto.getTitle().equals(title))
+			if (auto.pobierzMarke().equals(title))
 				return auto;
 		}
 		return null;
